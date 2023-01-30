@@ -55,18 +55,19 @@ export class CaptchaComponent implements OnChanges {
     console.log(this.config.type);
     switch (this.config.type) {
       case 1: // only alpha numaric degits to type
+      let num1 = Math.floor(Math.random() * 99);
+      let num2 = Math.floor(Math.random() * 9);
+      let operators = ['+', '-'];
+      let operator = operators[Math.floor(Math.random() * operators.length)];
+      this.code = num1 + operator + num2 + '=?';
+      this.resultCode = operator == '+' ? num1 + num2 : num1 - num2;
+        break;
+      case 2: // solve the calculation
+        
         let char =
           Math.random().toString(24).substring(2, this.config.length) +
           Math.random().toString(24).substring(2, 4);
         this.code = this.resultCode = char.toUpperCase();
-        break;
-      case 2: // solve the calculation
-        let num1 = Math.floor(Math.random() * 99);
-        let num2 = Math.floor(Math.random() * 9);
-        let operators = ['+', '-'];
-        let operator = operators[Math.floor(Math.random() * operators.length)];
-        this.code = num1 + operator + num2 + '=?';
-        this.resultCode = operator == '+' ? num1 + num2 : num1 - num2;
         break;
     }
 
